@@ -1,6 +1,10 @@
 pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
 plugins { id("com.facebook.react.settings") }
-extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+try {
+    extensions.configure(com.facebook.react.ReactSettingsExtension) { ex -> ex.autolinkLibrariesFromCommand() }
+} catch (Exception ignored) {
+    println("Warning: autolinkLibrariesFromCommand failed. Make sure all dependencies are installed correctly.")
+}
 rootProject.name = 'IOTApp'
 include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')
